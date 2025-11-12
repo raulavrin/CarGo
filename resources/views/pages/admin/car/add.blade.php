@@ -6,37 +6,41 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form action="/add-car" method="post">
+    <form action="/add-car" method="post" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
-            <!-- <div class="form-group">
-                                    <label for="exampleInputFile">Upload Image</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                                            <label class="custom-file-label" for="exampleInputFile">Choose image</label>
-                                        </div>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">Upload</span>
-                                        </div>
-                                    </div>
-                                </div> -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Image Url</label>
-                <input type="text" name="image" class="form-control" id="exampleInputEmail1"
-                    placeholder="Enter image url">
+                <label for="imageUpload">Vehicle Image</label>
+                <div class="custom-file">
+                    <input type="file" name="image" class="custom-file-input" id="imageUpload" accept="image/*" onchange="previewImage(this)">
+                    <label class="custom-file-label" for="imageUpload">Choose image</label>
+                </div>
+                <small class="form-text text-muted">Accepted formats: JPG, JPEG, PNG, GIF (Max: 2MB)</small>
+                
+                <!-- Image Preview -->
+                <div id="imagePreview" class="mt-3" style="display: none;">
+                    <img id="preview" src="" alt="Image Preview" style="max-width: 300px; max-height: 200px; border-radius: 8px; border: 2px solid #ddd;">
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Vehicle Name</label>
-                <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter vehicle name"
-                    required>
+                <label for="title">Vehicle Name</label>
+                <input type="text" name="title" class="form-control" id="title" placeholder="Enter vehicle name" required>
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Brand</label>
-                <input type="text" name="brand" class="form-control" id="exampleInputEmail1" placeholder="Enter brand (e.g., Toyota)">
+                <label for="brand">Brand</label>
+                <input type="text" name="brand" class="form-control" id="brand" placeholder="Enter brand (e.g., Toyota)">
             </div>
 
             <div class="form-group">
@@ -48,9 +52,8 @@
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Prize / Monthly rent</label>
-                <input type="number" name="price" class="form-control" id="exampleInputEmail1"
-                    placeholder="Enter price or monthly rent">
+                <label for="price">Prize / Monthly rent</label>
+                <input type="number" name="price" class="form-control" id="price" placeholder="Enter price or monthly rent">
             </div>
 
             <div class="form-group">
@@ -64,42 +67,58 @@
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Pickup Location</label>
-                <input type="text" name="address" class="form-control" id="exampleInputEmail1"
-                    placeholder="Enter pickup location">
+                <label for="address">Pickup Location</label>
+                <input type="text" name="address" class="form-control" id="address" placeholder="Enter pickup location">
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Seats</label>
-                <input type="number" name="seats" class="form-control" id="exampleInputEmail1"
-                    placeholder="Enter number of seats">
+                <label for="seats">Seats</label>
+                <input type="number" name="seats" class="form-control" id="seats" placeholder="Enter number of seats">
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Doors</label>
-                <input type="number" name="doors" class="form-control" id="exampleInputEmail1"
-                    placeholder="Enter number of doors">
+                <label for="doors">Doors</label>
+                <input type="number" name="doors" class="form-control" id="doors" placeholder="Enter number of doors">
             </div>
+            
             <div class="form-group">
-                <label for="exampleInputEmail1">Mileage (L/100km)</label>
-                <input type="number" step="0.1" name="milage" class="form-control" id="exampleInputEmail1"
-                    placeholder="Enter average mileage">
+                <label for="milage">Mileage (L/100km)</label>
+                <input type="number" step="0.1" name="milage" class="form-control" id="milage" placeholder="Enter average mileage">
             </div>
 
             <div class="form-check">
-                <input type="checkbox" name="isActive" class="form-check-input" id="exampleCheck2">
-                <label class="form-check-label" for="exampleCheck2">Is Active</label>
+                <input type="checkbox" name="isActive" class="form-check-input" id="isActive" checked>
+                <label class="form-check-label" for="isActive">Is Active</label>
             </div>
-
         </div>
 
-
         <!-- /.card-body -->
-
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </form>
 </div>
-@endsection
 
+<script>
+function previewImage(input) {
+    const preview = document.getElementById('preview');
+    const previewDiv = document.getElementById('imagePreview');
+    const fileLabel = document.querySelector('.custom-file-label');
+    
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            previewDiv.style.display = 'block';
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+        fileLabel.textContent = input.files[0].name;
+    } else {
+        previewDiv.style.display = 'none';
+        fileLabel.textContent = 'Choose image';
+    }
+}
+</script>
+@endsection

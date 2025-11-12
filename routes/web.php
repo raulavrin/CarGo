@@ -105,37 +105,16 @@ Route::get('/contact-delete/{id}', function($id){
     return app()->call([app()->make(App\Http\Controllers\ContactController::class), 'delete'], ['id' => $id]);
 })->name('contactDelete');
 
-// Add these TEST routes at the END of your web.php file (before the subscription routes)
-
-// Test route to check if routing works
-Route::get('/test-route', function() {
-    return response()->json([
-        'status' => 'success',
-        'message' => 'Routing is working!',
-        'time' => now()
-    ]);
-});
-
-// Test route to simulate SSLCommerz callback
-Route::match(['get', 'post'], '/test-subscription-success', function(\Illuminate\Http\Request $request) {
-    return response()->json([
-        'status' => 'success',
-        'message' => 'Test callback received',
-        'method' => $request->method(),
-        'data' => $request->all()
-    ]);
-});
-
-// Subscription Routes - Make sure these are at the END
+// Subscription Routes 
 Route::get('/subscription', [SubscriptionController::class, 'index'])->name('subscription.index');
 Route::post('/subscription/initiate', [SubscriptionController::class, 'initiatePayment'])->name('subscription.initiate');
 
-// Success page route (for displaying the success page)
+// Success page route 
 Route::get('/subscription/success-page', function() {
     return view('pages.subscription_success');
 })->name('subscription.success.page');
 
-// Callback routes without any middleware (these receive data from SSLCommerz)
+// Callback routes without any middleware 
 Route::match(['get', 'post'], 'subscription/success', [SubscriptionController::class, 'success'])->name('subscription.success');
 Route::match(['get', 'post'], 'subscription/fail', [SubscriptionController::class, 'fail'])->name('subscription.fail');
 Route::match(['get', 'post'], 'subscription/cancel', [SubscriptionController::class, 'cancel'])->name('subscription.cancel');

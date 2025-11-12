@@ -39,7 +39,7 @@
                                 @endif
                             </td>
                             <td>{{$appointment->date}}</td>
-                            <td>{{$appointment->property ? $appointment->property->title : 'Vehicle removed'}}</td>
+                            <td>{{$appointment->car ? $appointment->car->title : 'Vehicle removed'}}</td>
                             <td>{{$appointment->message}}</td>
                             <td>{{$appointment->status}}</td>
                             <td>

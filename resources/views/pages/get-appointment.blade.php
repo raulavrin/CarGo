@@ -89,12 +89,12 @@
 
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <select name="property" id="property" class="form-control" placeholder="Select Vehicle">
-                                                @foreach($properties as $property)
-                                                    <option value="{{$property->id}}">{{$property->title}}</option>
+                                            <select name="car" id="car" class="form-control" placeholder="Select Vehicle">
+                                                @foreach($cars as $car)
+                                                    <option value="{{$car->id}}">{{$car->title}}</option>
                                                 @endforeach
                                             </select>
-                                            <label for="property">Select Vehicle</label>
+                                            <label for="car">Select Vehicle</label>
                                         </div>
                                     </div>
 

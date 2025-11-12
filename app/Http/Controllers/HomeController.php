@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index(Request $request){
     $query = Car::where('isActive', true);
 
-    // fetch distinct car types for the select in the view
+    
     $types = Car::where('isActive', true)->distinct()->pluck('car_type');
 
         if ($request->filled('q')) {
@@ -31,10 +31,10 @@ class HomeController extends Controller
             $query->whereRaw('LOWER(car_type) LIKE ?', ["%{$vtLower}%"]);
         }
 
-        // removed dedicated brand param in favor of single q input
+        
 
         $cars = $query->get();
 
-        return view('pages.home', ['properties'=>$cars, 'types' => $types]);
+        return view('pages.home', ['cars'=>$cars, 'types' => $types]);
     }
 }

@@ -11,17 +11,17 @@ use RealRashid\SweetAlert\Facades\Alert;
 class AppointmentController extends Controller
 {
     public function getAppointment(){
-        $properties = Car::where(["isActive"=>true])->get();
-        return view("pages.get-appointment", ["properties"=>$properties]);
+        $cars = Car::where(["isActive"=>true])->get();
+        return view("pages.get-appointment", ["cars"=>$cars]);
     }
 
     public function appointmentBooking(Request $request){
-        // dd($request->all());
+        
         $data["name"] = $request->name;
         $data["email"] = $request->email;
         $data["phone"] = $request->phone;
         $data["date"] = $request->date;
-        $data["property_id"] = $request->property;
+        $data["car_id"] = $request->car;
         $data["user_id"] = Auth::user()->id;
         $data["message"] = $request->notes;
 
@@ -33,7 +33,7 @@ class AppointmentController extends Controller
     }
 
     public function getAppointmentList(){
-        $appointments = Appointment::with("property")->with("user")->get();
+        $appointments = Appointment::with("car")->with("user")->get();
         return view("pages.admin.appointment.list", ["appointments"=>$appointments]);
     }
 
@@ -54,7 +54,7 @@ class AppointmentController extends Controller
     }
 
     public function myAppointments(){
-        $myAppointments = Appointment::where(["user_id"=>Auth::user()->id])->with("property")->get();
+        $myAppointments = Appointment::where(["user_id"=>Auth::user()->id])->with("car")->get();
 
         return view("pages.my-appointments", ["myAppointments"=>$myAppointments]);
     }

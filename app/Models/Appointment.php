@@ -10,9 +10,9 @@ class Appointment extends Model
 {
     protected $guarded = [];
 
-     public function property(): BelongsTo
+    public function car(): BelongsTo
     {
-        return $this->belongsTo(Car::class);
+        return $this->belongsTo(Car::class, 'car_id');
     }
 
      public function user(): BelongsTo

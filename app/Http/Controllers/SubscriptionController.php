@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Log;
 
 class SubscriptionController extends Controller
 {
-    // Remove CSRF protection from constructor
+   
     public function __construct()
     {
-        // Don't add any middleware here for now
+        
     }
 
     public function index()
@@ -113,7 +113,7 @@ class SubscriptionController extends Controller
 
     public function success(Request $request)
     {
-        // Create a simple response file to verify the route is being hit
+
         file_put_contents(storage_path('logs/sslcommerz_success.txt'), 
             date('Y-m-d H:i:s') . "\n" . 
             "Method: " . $request->method() . "\n" .
@@ -147,7 +147,7 @@ class SubscriptionController extends Controller
                 return $this->simpleRedirect('home', 'Subscription not found.');
             }
 
-            // Log the user back in using the user_id from subscription
+            
             if (!Auth::check() && $subscription->user_id) {
                 Auth::loginUsingId($subscription->user_id);
             }
@@ -183,9 +183,9 @@ class SubscriptionController extends Controller
                 'format' => 'json',
             ];
 
-            // Check if the callback itself says VALID (SSLCommerz already validated)
+           
             if ($request->input('status') === 'VALID') {
-                // The payment is already validated by SSLCommerz in the callback
+                
                 $subscription->update([
                     'status' => 'success',
                     'sslcommerz_tran_id' => $valId,
@@ -201,7 +201,7 @@ class SubscriptionController extends Controller
                 return redirect()->route('subscription.success.page')->with('success', 'Subscription activated successfully!');
             }
 
-            // If not VALID in callback, do server-side verification
+            
             $verifyResponse = Http::asForm()->post($verifyUrl, $verifyData);
 
             if ($verifyResponse->successful()) {
@@ -261,7 +261,7 @@ class SubscriptionController extends Controller
         $subscriptionId = $request->input('value_a');
         $userId = $request->input('value_b');
         
-        // Log the user back in if they were logged out
+        
         if (!Auth::check() && $userId) {
             Auth::loginUsingId($userId);
         }
@@ -299,7 +299,7 @@ class SubscriptionController extends Controller
         $subscriptionId = $request->input('value_a');
         $userId = $request->input('value_b');
         
-        // Log the user back in if they were logged out
+        
         if (!Auth::check() && $userId) {
             Auth::loginUsingId($userId);
         }
@@ -327,7 +327,7 @@ class SubscriptionController extends Controller
         return $this->simpleRedirect('subscription.index', 'Payment cancelled.', 'info');
     }
 
-    // Helper method to avoid session issues
+    
     private function simpleRedirect($route, $message, $type = 'error')
     {
         return redirect()->route($route)->with($type, $message);

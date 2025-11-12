@@ -34,9 +34,9 @@
                                     </td>
                                     <td>{{$appointment->date}}</td>
                                     <td>
-                                        <p class="mb-0">Name: {{$appointment->property->title}}</p>
-                                        <p class="mb-0">Price: ${{$appointment->property->price}}</p>
-                                        <p class="mb-0">Address: {{$appointment->property->address}}</p>
+                                        <p class="mb-0">Name: {{$appointment->car->title}}</p>
+                                        <p class="mb-0">Price: ${{$appointment->car->price}}</p>
+                                        <p class="mb-0">Address: {{$appointment->car->address}}</p>
                                     </td>
                                     <td>{{$appointment->message}}</td>
                                     <td>

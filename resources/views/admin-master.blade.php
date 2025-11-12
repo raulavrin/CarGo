@@ -50,7 +50,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-light-primary elevation-1" style="background-color: #f8f9fa;">
             <!-- Brand Logo -->
-            <a href="/dashboard" class="brand-link bg-white border-bottom">
+            <a href="/dashboard/car-list" class="brand-link bg-white border-bottom">
                 <i class="fas fa-car brand-image ml-3 text-primary" style="font-size: 2rem; opacity: .8"></i>
                 <span class="brand-text font-weight-bold text-dark">CarGo Admin</span>
             </a>
@@ -138,15 +138,6 @@
         </div>
         <!-- /.content-wrapper -->
 
-        <!-- Footer -->
-        <footer class="main-footer bg-white border-top">
-            <strong>Copyright &copy; 2025 <a href="/" class="text-primary">CarGo</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Admin Panel</b> v1.0
-            </div>
-        </footer>
-    </div>
     <!-- ./wrapper -->
 
     @include('common.admin.script')

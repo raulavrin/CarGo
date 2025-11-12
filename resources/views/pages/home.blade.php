@@ -23,7 +23,7 @@
                 <div class="col-md-6 p-5 mt-lg-5">
                     <h1 class="display-5 animated fadeIn mb-4 hero-title">Find The <span class="text-primary">Perfect Car</span> For Your Journey</h1>
                     <p class="animated fadeIn mb-4 pb-2 hero-subtitle">Discover the perfect vehicle for your next adventure. Quality cars, competitive prices, and exceptional service.</p>
-                    <a href="#search" class="btn btn-primary py-3 px-5 me-3 animated fadeIn rounded-pill">Get Started</a>
+                    <a href="#results" class="btn btn-primary py-3 px-5 me-3 animated fadeIn rounded-pill">Browse Cars</a>
                     <a href="#subscription" class="btn py-3 px-5 animated fadeIn rounded-pill" style="border:1px solid #d9d9d9;color:#333;background:#f7f7f7;">View Plans</a>
                 </div>
                 <div class="col-md-6 animated fadeIn p-4">
@@ -39,46 +39,6 @@
             </div>
         </div>
         <!-- Header End -->
-
-        <!-- Search Start -->
-        <div class="container-fluid mb-5 mt-5 wow fadeIn search-container" data-wow-delay="0.1s" id="search" style="margin-top: 4rem !important;">
-            <div class="container">
-                <div class="row g-2">
-                    <form action="{{ route('home') }}#results" method="get" class="w-100">
-                        <div class="row g-2">
-                            <div class="col-md-10">
-                                <div class="row g-2">
-                                    <div class="col-md-4">
-                                        <input type="text" name="q" value="{{ request('q') }}" class="form-control border-0 py-3 search-input" placeholder="Search car, brand or model">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select name="vehicle_type" class="form-select border-0 py-3 search-input">
-                                            <option value="" {{ request('vehicle_type') == '' ? 'selected' : '' }}>Vehicle Type</option>
-                                            @if(!empty($types) && $types->count())
-                                                @foreach($types as $t)
-                                                    <option value="{{ $t }}" {{ request('vehicle_type') == $t ? 'selected' : '' }}>{{ $t }}</option>
-                                                @endforeach
-                                            @else
-                                                <option value="Sedan" {{ request('vehicle_type') == 'Sedan' ? 'selected' : '' }}>Sedan</option>
-                                                <option value="SUV" {{ request('vehicle_type') == 'SUV' ? 'selected' : '' }}>SUV</option>
-                                                <option value="Hatchback" {{ request('vehicle_type') == 'Hatchback' ? 'selected' : '' }}>Hatchback</option>
-                                                <option value="Convertible" {{ request('vehicle_type') == 'Convertible' ? 'selected' : '' }}>Convertible</option>
-                                            @endif
-                                        </select>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <button type="submit" class="btn w-100 py-3 search-button">Search</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Search End -->
-
 
         <!-- Category Start -->
         <div class="container-xxl py-5">
@@ -264,34 +224,73 @@
         <!-- Vehicle List Start -->
         <div class="container-xxl py-5">
             <div class="container">
-                <div class="row g-0 gx-5 align-items-end">
+                <div class="row g-0 gx-5 align-items-end mb-4">
                     <div class="col-lg-6">
-                        <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+                        <div class="text-start mx-auto wow slideInLeft" data-wow-delay="0.1s">
                             <h1 class="mb-3 section-title">Featured Vehicles</h1>
                             <p class="section-subtitle">Discover our premium selection of well-maintained vehicles ready for your next journey.</p>
                         </div>
                     </div>
                 </div>
+
+                <!-- Search Bar -->
+                <div class="mb-5 wow fadeIn search-container" data-wow-delay="0.1s" id="search">
+                    <div class="row g-2">
+                        <form action="{{ route('home') }}#results" method="get" class="w-100">
+                            <div class="row g-2">
+                                <div class="col-md-10">
+                                    <div class="row g-2">
+                                        <div class="col-md-4">
+                                            <input type="text" name="q" value="{{ request('q') }}" class="form-control border-0 py-3 search-input" placeholder="Search car, brand or model">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select name="vehicle_type" class="form-select border-0 py-3 search-input">
+                                                <option value="" {{ request('vehicle_type') == '' ? 'selected' : '' }}>Vehicle Type</option>
+                                                @if(!empty($types) && $types->count())
+                                                    @foreach($types as $t)
+                                                        <option value="{{ $t }}" {{ request('vehicle_type') == $t ? 'selected' : '' }}>{{ $t }}</option>
+                                                    @endforeach
+                                                @else
+                                                    <option value="Sedan" {{ request('vehicle_type') == 'Sedan' ? 'selected' : '' }}>Sedan</option>
+                                                    <option value="SUV" {{ request('vehicle_type') == 'SUV' ? 'selected' : '' }}>SUV</option>
+                                                    <option value="Hatchback" {{ request('vehicle_type') == 'Hatchback' ? 'selected' : '' }}>Hatchback</option>
+                                                    <option value="Convertible" {{ request('vehicle_type') == 'Convertible' ? 'selected' : '' }}>Convertible</option>
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn w-100 py-3 search-button">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Search Bar End -->
+
                 <div id="results">
                     <div class="p-0">
                         <div class="row g-4">
-                            @foreach($properties as $property)
+                            @foreach($cars as $car)
                                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                    <div class="property-item vehicle-card">
+                                    <div class="car-item vehicle-card">
                                         <div class="position-relative overflow-hidden">
-                                            <a href="{{ route('getAppointment') }}?property_id={{ $property->id }}"><img class="img-fluid vehicle-image" src="{{$property->image}}" alt=""></a>
-                                            <div class="rounded-pill text-white position-absolute start-0 top-0 m-4 py-1 px-3 bg-primary">{{$property->type}}</div>
-                                            <div class="bg-white rounded-top position-absolute start-0 bottom-0 mx-4 pt-1 px-3 text-primary">{{$property->car_type}}</div>
+                                            <a href="{{ route('getAppointment') }}?car_id={{ $car->id }}">
+                                                <img class="img-fluid vehicle-image" src="{{ $car->image_url }}" alt="{{ $car->title }}">
+                                            </a>
+                                            <div class="rounded-pill text-white position-absolute start-0 top-0 m-4 py-1 px-3 bg-primary">{{$car->type}}</div>
+                                            <div class="bg-white rounded-top position-absolute start-0 bottom-0 mx-4 pt-1 px-3 text-primary">{{$car->car_type}}</div>
                                         </div>
                                         <div class="p-4 pb-0">
-                                            <h5 class="mb-3 vehicle-price">${{ $property->price }}{{ strtolower($property->type) == 'for rent' ? '/Month' : '' }}</h5>
-                                            <a class="d-block h5 mb-2 vehicle-title" href="{{ route('getAppointment') }}?property_id={{ $property->id }}">{{$property->title}}</a>
-                                            <p class="vehicle-location"><i class="fa fa-map-marker-alt me-2 text-primary"></i>{{$property->address}}</p>
+                                            <h5 class="mb-3 vehicle-price">${{ $car->price }}{{ strtolower($car->type) == 'for rent' ? '/Month' : '' }}</h5>
+                                            <a class="d-block h5 mb-2 vehicle-title" href="{{ route('getAppointment') }}?car_id={{ $car->id }}">{{$car->title}}</a>
+                                            <p class="vehicle-location"><i class="fa fa-map-marker-alt me-2 text-primary"></i>{{$car->address}}</p>
                                         </div>
                                         <div class="d-flex border-top vehicle-feature">
-                                            <small class="flex-fill text-center border-end py-2 vehicle-feature"><i class="fa fa-car-side me-2 text-primary"></i>{{$property->seats}} Seats</small>
-                                            <small class="flex-fill text-center border-end py-2 vehicle-feature"><i class="fa fa-cog me-2 text-primary"></i>{{$property->doors}} Doors</small>
-                                            <small class="flex-fill text-center py-2 vehicle-feature"><i class="fa fa-gas-pump me-2 text-primary"></i>{{$property->milage}} L/100km</small>
+                                            <small class="flex-fill text-center border-end py-2 vehicle-feature"><i class="fa fa-car-side me-2 text-primary"></i>{{$car->seats}} Seats</small>
+                                            <small class="flex-fill text-center border-end py-2 vehicle-feature"><i class="fa fa-cog me-2 text-primary"></i>{{$car->doors}} Doors</small>
+                                            <small class="flex-fill text-center py-2 vehicle-feature"><i class="fa fa-gas-pump me-2 text-primary"></i>{{$car->milage}} L/100km</small>
                                         </div>
                                     </div>
                                 </div>
