@@ -25,7 +25,7 @@
                     <input type="file" name="image" class="custom-file-input" id="imageUpload" accept="image/*" onchange="previewImage(this)">
                     <label class="custom-file-label" for="imageUpload">Choose image</label>
                 </div>
-                <small class="form-text text-muted">Accepted formats: JPG, JPEG, PNG, GIF (Max: 2MB)</small>
+                <small class="form-text text-muted">Accepted formats: JPG, JPEG, PNG</small>
                 
                 <!-- Image Preview -->
                 <div id="imagePreview" class="mt-3" style="display: none;">

@@ -5,7 +5,6 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Vehicle List</h3>
-
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
@@ -31,11 +30,11 @@
                         <tr>
                             <td>{{$car->id}}</td>
                             <td>
-                                <img src="{{$car->image}}" height="64px" alt="">
+                                <img src="{{$car->image_url}}" height="64px" alt="{{$car->title}}" style="object-fit: cover; border-radius: 4px;">
                             </td>
                             <td>{{$car->title}}</td>
                             <td>{{$car->type}}</td>
-                            <td>${{$car->price}}/day</td>
+                            <td>৳{{$car->price}}/day</td>
                             <td>{{$car->car_type}}</td>
                             <td>{{$car->address}}</td>
                             <td>{{$car->seats}}</td>
@@ -43,12 +42,18 @@
                             <td>{{$car->milage}}</td>
                             <td class="{{$car->isActive ? "text-success" : "text-danger"}}">{{$car->isActive ? "Active" : "Inactive"}}</td>
                             <td>
-                                <a href="{{route("editCar", $car->id)}}" class="border border-primary p-2 rounded"><i class="fas fa-pen-nib"></i></a>
-                                <a href="{{route("carDelete", $car->id)}}" class="border border-danger text-danger p-2 rounded ml-2"><i class="fas fa-trash"></i></a>
+                                <a href="{{route("editCar", $car->id)}}" class="btn btn-sm btn-primary" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{{route("carDelete", $car->id)}}" 
+                                   class="btn btn-sm btn-danger ml-1" 
+                                   onclick="return confirm('Are you sure you want to delete this vehicle?')"
+                                   title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                         @endforeach
-                        
                     </tbody>
                 </table>
             </div>
@@ -58,4 +63,3 @@
     </div>
 </div>
 @endsection
-

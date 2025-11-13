@@ -283,7 +283,7 @@
                                             <div class="bg-white rounded-top position-absolute start-0 bottom-0 mx-4 pt-1 px-3 text-primary">{{$car->car_type}}</div>
                                         </div>
                                         <div class="p-4 pb-0">
-                                            <h5 class="mb-3 vehicle-price">${{ $car->price }}{{ strtolower($car->type) == 'for rent' ? '/Month' : '' }}</h5>
+                                            <h5 class="mb-3 vehicle-price">৳{{ $car->price }}{{ strtolower($car->type) == 'for rent' ? '/Month' : '' }}</h5>
                                             <a class="d-block h5 mb-2 vehicle-title" href="{{ route('getAppointment') }}?car_id={{ $car->id }}">{{$car->title}}</a>
                                             <p class="vehicle-location"><i class="fa fa-map-marker-alt me-2 text-primary"></i>{{$car->address}}</p>
                                         </div>
