@@ -233,6 +233,8 @@
                     </div>
                 </div>
 
+                <div style="height: 3rem;"></div>
+                
                 <!-- Search Bar -->
                 <div class="mb-5 wow fadeIn search-container" data-wow-delay="0.1s" id="search">
                     <div class="row g-2">

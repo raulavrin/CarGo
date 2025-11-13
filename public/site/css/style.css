@@ -975,6 +975,14 @@ html {
     background: linear-gradient(135deg, #2c5282 0%, var(--accent) 100%);
 }
 
+.btn-outline-primary.rounded-pill:hover {
+    background: #5deac9;
+    border-color: #5deac9;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(89, 152, 183, 0.3);
+}
+
 .btn-outline-danger.rounded-pill {
     border-color: #f56565;
     color: #f56565;

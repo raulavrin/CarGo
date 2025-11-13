@@ -38,8 +38,11 @@
 								<a href="{{ route('home') }}" class="btn btn-primary py-3 px-5 rounded-pill">
 									<i class="fa fa-home me-2"></i>Go to Home
 								</a>
+								<a href="{{ route('userProfile') }}" class="btn py-3 px-5 rounded-pill" style="border:1px solid #d9d9d9;color:#333;background:#f7f7f7;">
+									<i class="fa fa-user me-2"></i>View Profile
+								</a>
 								<a href="{{ route('myAppointments') }}" class="btn py-3 px-5 rounded-pill" style="border:1px solid #d9d9d9;color:#333;background:#f7f7f7;">
-									<i class="fa fa-calendar me-2"></i>View My Bookings
+									<i class="fa fa-calendar me-2"></i>My Bookings
 								</a>
 							</div>
 						</div>

@@ -14,11 +14,12 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    /**
+   /**
      * Bootstrap any application services.
      */
     public function boot(): void
     {
-        //
+        // Share ADMIN_EMAIL constant with all views
+        view()->share('ADMIN_EMAIL', 'admin@university.edu');
     }
 }

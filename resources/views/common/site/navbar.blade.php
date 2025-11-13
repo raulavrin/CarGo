@@ -27,15 +27,27 @@
                     <a href="/contact" class="nav-item nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact</a>
                 </div>
 
-                <!-- Right Side Actions -->
+               <!-- Right Side Actions -->
                 <div class="d-flex align-items-center gap-3">
                     <!-- Theme Toggle -->
                     <button class="theme-toggle-modern" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
                         <i class="fas fa-moon theme-icon" id="themeIcon"></i>
                     </button>
 
-                    <!-- Auth Button -->
+                    <!-- Auth Actions -->
                     @if(Auth::user())
+                        <!-- Profile/Dashboard Button -->
+                        @if(Auth::user()->email === ADMIN_EMAIL)
+                            <a href="{{route('carList')}}" class="btn btn-outline-primary rounded-pill px-4 py-2" title="Go to Dashboard">
+                                <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                            </a>
+                        @else
+                            <a href="{{route('userProfile')}}" class="btn btn-outline-primary rounded-pill px-4 py-2" title="View Profile">
+                                <i class="fas fa-user me-2"></i>Profile
+                            </a>
+                        @endif
+                        
+                        <!-- Logout Button -->
                         <a href="{{route('logout')}}" class="btn btn-outline-danger rounded-pill px-4 py-2">
                             <i class="fas fa-sign-out-alt me-2"></i>Logout
                         </a>

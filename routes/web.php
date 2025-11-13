@@ -118,3 +118,8 @@ Route::get('/subscription/success-page', function() {
 Route::match(['get', 'post'], 'subscription/success', [SubscriptionController::class, 'success'])->name('subscription.success');
 Route::match(['get', 'post'], 'subscription/fail', [SubscriptionController::class, 'fail'])->name('subscription.fail');
 Route::match(['get', 'post'], 'subscription/cancel', [SubscriptionController::class, 'cancel'])->name('subscription.cancel');
+
+// User Profile Routes
+Route::get('/profile', [App\Http\Controllers\UserProfileController::class, 'index'])->name('userProfile');
+Route::post('/profile/update', [App\Http\Controllers\UserProfileController::class, 'updateProfile'])->name('userProfile.update');
+Route::post('/profile/password', [App\Http\Controllers\UserProfileController::class, 'updatePassword'])->name('userProfile.password');
