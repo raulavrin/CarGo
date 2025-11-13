@@ -1151,3 +1151,302 @@ html {
     align-items: center;
     justify-content: center;
 }
+/* Additional Dark Mode Styling - Add to style.css */
+
+/* Dark Mode - Global Text Elements */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] .h1,
+[data-theme="dark"] .h2,
+[data-theme="dark"] .h3,
+[data-theme="dark"] .h4,
+[data-theme="dark"] .h5,
+[data-theme="dark"] .h6 {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] div {
+    color: var(--text-secondary);
+}
+
+/* Dark Mode - Breadcrumb */
+[data-theme="dark"] .breadcrumb-item a {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .breadcrumb-item.active,
+[data-theme="dark"] .breadcrumb-item + .breadcrumb-item::before {
+    color: var(--text-muted);
+}
+
+/* Dark Mode - Images */
+[data-theme="dark"] img {
+    opacity: 0.9;
+}
+
+/* Dark Mode - Tables */
+[data-theme="dark"] .table {
+    color: var(--text-secondary);
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .table thead th {
+    background-color: var(--bg-ash);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--bg-ash);
+}
+
+[data-theme="dark"] .table-hover tbody tr:hover {
+    background-color: var(--bg-secondary);
+}
+
+/* Dark Mode - Badges */
+[data-theme="dark"] .badge {
+    background-color: var(--bg-ash);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .badge.bg-success {
+    background-color: #48bb78 !important;
+    color: white !important;
+}
+
+[data-theme="dark"] .badge.bg-danger {
+    background-color: #f56565 !important;
+    color: white !important;
+}
+
+[data-theme="dark"] .badge.bg-warning {
+    background-color: #ed8936 !important;
+    color: white !important;
+}
+
+[data-theme="dark"] .badge.bg-primary {
+    background-color: var(--accent) !important;
+    color: white !important;
+}
+
+/* Dark Mode - Alerts */
+[data-theme="dark"] .alert {
+    background-color: var(--bg-ash);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .alert-success {
+    background-color: rgba(72, 187, 120, 0.2);
+    color: #9ae6b4;
+    border-color: #48bb78;
+}
+
+[data-theme="dark"] .alert-danger {
+    background-color: rgba(245, 101, 101, 0.2);
+    color: #fc8181;
+    border-color: #f56565;
+}
+
+[data-theme="dark"] .alert-info {
+    background-color: rgba(99, 179, 237, 0.2);
+    color: #90cdf4;
+    border-color: #63b3ed;
+}
+
+[data-theme="dark"] .alert-warning {
+    background-color: rgba(237, 137, 54, 0.2);
+    color: #f6ad55;
+    border-color: #ed8936;
+}
+
+/* Dark Mode - Icons in contact page */
+[data-theme="dark"] .category-card .bg-primary {
+    background: linear-gradient(135deg, var(--accent) 0%, #2c5282 100%) !important;
+}
+
+/* Dark Mode - Footer stays dark in both modes */
+.footer-dark {
+    background-color: var(--primary) !important;
+}
+
+[data-theme="dark"] .footer-dark {
+    background-color: #1a1a1a !important;
+}
+
+/* Dark Mode - List items */
+[data-theme="dark"] li {
+    color: var(--text-secondary);
+}
+
+/* Dark Mode - Links */
+[data-theme="dark"] a:not(.btn):not(.nav-link):not(.footer-link) {
+    color: var(--accent);
+}
+
+[data-theme="dark"] a:not(.btn):not(.nav-link):not(.footer-link):hover {
+    color: #63b3ed;
+}
+
+/* Dark Mode - Small text */
+[data-theme="dark"] small,
+[data-theme="dark"] .small {
+    color: var(--text-muted);
+}
+
+/* Dark Mode - Text muted class */
+[data-theme="dark"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Dark Mode - Text body class */
+[data-theme="dark"] .text-body {
+    color: var(--text-secondary) !important;
+}
+
+/* Dark Mode - Modal (if used) */
+[data-theme="dark"] .modal-content {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .modal-header {
+    border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .modal-footer {
+    border-top-color: var(--border-color);
+}
+
+/* Dark Mode - Dropdown (if used) */
+[data-theme="dark"] .dropdown-menu {
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .dropdown-item:hover,
+[data-theme="dark"] .dropdown-item:focus {
+    background-color: var(--bg-ash);
+    color: var(--text-primary);
+}
+
+/* Dark Mode - Category count text */
+[data-theme="dark"] .category-count {
+    color: var(--text-muted) !important;
+}
+
+/* Dark Mode - Vehicle location text */
+[data-theme="dark"] .vehicle-location {
+    color: var(--text-secondary) !important;
+}
+
+/* Dark Mode - Form labels */
+[data-theme="dark"] label,
+[data-theme="dark"] .form-label {
+    color: var(--text-primary);
+}
+
+/* Dark Mode - Floating labels */
+[data-theme="dark"] .form-floating > label {
+    color: var(--text-muted);
+}
+
+/* Dark Mode - Text in white backgrounds should stay readable */
+[data-theme="dark"] .bg-white .text-body,
+[data-theme="dark"] .bg-white p,
+[data-theme="dark"] .bg-white span {
+    color: var(--text-secondary);
+}
+
+/* Dark Mode - Ensure vehicle feature text is readable */
+[data-theme="dark"] .vehicle-feature {
+    color: var(--text-secondary) !important;
+    background: var(--bg-ash);
+}
+
+/* Dark Mode - Section titles and subtitles */
+[data-theme="dark"] .section-title {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .section-subtitle {
+    color: var(--text-secondary) !important;
+}
+
+/* Dark Mode - Hero text */
+[data-theme="dark"] .hero-title {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .hero-subtitle {
+    color: var(--text-secondary) !important;
+}
+
+/* Dark Mode - CTA text */
+[data-theme="dark"] .cta-title {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .cta-text {
+    color: var(--text-secondary) !important;
+}
+
+/* Dark Mode - Ensure all text in cards is readable */
+[data-theme="dark"] .card,
+[data-theme="dark"] .category-card,
+[data-theme="dark"] .vehicle-card,
+[data-theme="dark"] .subscription-card,
+[data-theme="dark"] .section-container,
+[data-theme="dark"] .search-container,
+[data-theme="dark"] .cta-inner {
+    color: var(--text-secondary);
+}
+
+/* Dark Mode - Make sure primary color text stays visible */
+[data-theme="dark"] .text-primary {
+    color: var(--accent) !important;
+}
+
+/* Dark Mode - List unstyled items */
+[data-theme="dark"] .list-unstyled li {
+    color: var(--text-secondary);
+}
+
+/* Dark Mode - Strong and bold text */
+[data-theme="dark"] strong,
+[data-theme="dark"] b,
+[data-theme="dark"] .fw-bold {
+    color: var(--text-primary);
+}
+
+/* Dark Mode - iframe borders */
+[data-theme="dark"] iframe {
+    border: 1px solid var(--border-color);
+}
+
+/* Smooth transition for theme changes */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Preserve transitions for interactive elements */
+.btn,
+.nav-link,
+a,
+.card,
+.form-control {
+    transition: all 0.3s ease;
+}
