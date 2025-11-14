@@ -16,13 +16,38 @@
     <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
 
     <style>
+        :root {
+            --bg-gradient-start: #e8e8e8;
+            --bg-gradient-end: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border-color: #e0e0e0;
+            --input-bg: #ffffff;
+            --icon-color: #999999;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient-start: #1a202c;
+            --bg-gradient-end: #2d3748;
+            --card-bg: #2d3748;
+            --text-primary: #f7fafc;
+            --text-secondary: #e2e8f0;
+            --text-muted: #a0aec0;
+            --border-color: #4a5568;
+            --input-bg: #1a202c;
+            --icon-color: #cbd5e0;
+        }
+
         body {
-            background: linear-gradient(135deg, #e8e8e8 0%, #f5f5f5 100%);
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Source Sans Pro', sans-serif;
+            transition: background 0.3s ease;
         }
 
         .login-container {
@@ -32,11 +57,12 @@
         }
 
         .login-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 16px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             overflow: hidden;
             animation: slideUp 0.5s ease-out;
+            transition: background-color 0.3s ease;
         }
 
         @keyframes slideUp {
@@ -86,23 +112,31 @@
 
         .form-label {
             font-weight: 600;
-            color: #333;
+            color: var(--text-primary);
             margin-bottom: 8px;
             font-size: 0.9rem;
             display: block;
+            transition: color 0.3s ease;
         }
 
         .form-control {
-            border: 2px solid #e0e0e0;
+            border: 2px solid var(--border-color);
             border-radius: 8px;
             padding: 12px 15px;
             font-size: 0.95rem;
             transition: all 0.3s ease;
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+        }
+
+        .form-control::placeholder {
+            color: var(--text-muted);
         }
 
         .form-control:focus {
             border-color: #667eea;
             box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.15);
+            background-color: var(--input-bg);
         }
 
         .input-icon {
@@ -114,7 +148,9 @@
             right: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: #999;
+            color: var(--icon-color);
+            transition: color 0.3s ease;
+            pointer-events: none;
         }
 
         .input-icon .form-control {
@@ -122,7 +158,7 @@
         }
 
         .btn-login {
-            background: linear-gradient(135deg,  #5e9be6ff 0%, #90c6edff 100%);
+            background: linear-gradient(135deg, #5e9be6ff 0%, #90c6edff 100%);
             border: none;
             border-radius: 8px;
             padding: 14px;
@@ -157,22 +193,25 @@
             top: 50%;
             width: 100%;
             height: 1px;
-            background: #e0e0e0;
+            background: var(--border-color);
+            transition: background 0.3s ease;
         }
 
         .divider span {
-            background: white;
+            background: var(--card-bg);
             padding: 0 15px;
             position: relative;
-            color: #999;
+            color: var(--text-muted);
             font-size: 0.85rem;
+            transition: all 0.3s ease;
         }
 
         .register-link {
             text-align: center;
             margin-top: 20px;
-            color: #666;
+            color: var(--text-secondary);
             font-size: 0.95rem;
+            transition: color 0.3s ease;
         }
 
         .register-link a {
@@ -200,7 +239,7 @@
         }
 
         .back-to-site a {
-            color: black ;
+            color: var(--text-primary);
             text-decoration: none;
             font-size: 0.9rem;
             opacity: 0.9;
@@ -215,7 +254,29 @@
         .back-to-site i {
             margin-right: 5px;
         }
+
+        /* Dark mode specific overrides */
+        [data-theme="dark"] .login-card {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        [data-theme="dark"] .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+
+        [data-theme="dark"] .alert-danger {
+            background-color: rgba(245, 101, 101, 0.2);
+            color: #fc8181;
+        }
     </style>
+
+    <script>
+        // Initialize theme from localStorage
+        (function() {
+            const storedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', storedTheme);
+        })();
+    </script>
 </head>
 
 <body>

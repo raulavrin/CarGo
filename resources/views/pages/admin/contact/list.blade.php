@@ -1,5 +1,120 @@
 @extends('admin-master')
 @section('main_content')
+
+<style>
+    /* Dark mode styles for modal */
+    [data-theme="dark"] .modal-content {
+        background-color: #2d3748;
+        color: #f7fafc;
+        border: 1px solid #4a5568;
+    }
+
+    [data-theme="dark"] .modal-header {
+        background-color: #1a202c;
+        border-bottom-color: #4a5568;
+    }
+
+    [data-theme="dark"] .modal-title {
+        color: #f7fafc;
+    }
+
+    [data-theme="dark"] .modal-body {
+        background-color: #2d3748;
+    }
+
+    [data-theme="dark"] .modal-body dt {
+        color: #e2e8f0;
+    }
+
+    [data-theme="dark"] .modal-body dd {
+        color: #cbd5e0;
+    }
+
+    [data-theme="dark"] .modal-body a {
+        color: #63b3ed;
+    }
+
+    [data-theme="dark"] .modal-body a:hover {
+        color: #90cdf4;
+    }
+
+    [data-theme="dark"] .modal-footer {
+        background-color: #1a202c;
+        border-top-color: #4a5568;
+    }
+
+    [data-theme="dark"] .close {
+        color: #f7fafc;
+        opacity: 0.8;
+    }
+
+    [data-theme="dark"] .close:hover {
+        color: #ffffff;
+        opacity: 1;
+    }
+
+    /* Table enhancements for dark mode */
+    [data-theme="dark"] .card {
+        background-color: #2d3748;
+        border-color: #4a5568;
+    }
+
+    [data-theme="dark"] .card-header {
+        background-color: #1a202c;
+        border-bottom-color: #4a5568;
+        color: #f7fafc;
+    }
+
+    [data-theme="dark"] .table {
+        color: #e2e8f0;
+    }
+
+    [data-theme="dark"] .table thead th {
+        background-color: #1a202c;
+        color: #f7fafc;
+        border-color: #4a5568;
+    }
+
+    [data-theme="dark"] .table td {
+        border-color: #4a5568;
+        color: #cbd5e0;
+    }
+
+    [data-theme="dark"] .bg-light {
+        background-color: #1a202c !important;
+    }
+
+    [data-theme="dark"] .badge-warning {
+        background-color: #ed8936;
+        color: #fff;
+    }
+
+    [data-theme="dark"] .badge-info {
+        background-color: #4299e1;
+        color: #fff;
+    }
+
+    [data-theme="dark"] .badge-success {
+        background-color: #48bb78;
+        color: #fff;
+    }
+
+    [data-theme="dark"] .badge-primary {
+        background-color: #4299e1;
+        color: #fff;
+    }
+
+    /* Button enhancements */
+    [data-theme="dark"] .btn-group .btn {
+        border-color: #4a5568;
+    }
+
+    /* Ensure modal backdrop works in dark mode */
+    [data-theme="dark"] .modal-backdrop.show {
+        opacity: 0.7;
+    }
+</style>
+
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -83,11 +198,11 @@
                         </tr>
 
                         <!-- Modal for full message -->
-                        <div class="modal fade" id="messageModal{{ $message->id }}" tabindex="-1" role="dialog">
+                        <div class="modal fade" id="messageModal{{ $message->id }}" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel{{ $message->id }}" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Message Details</h5>
+                                        <h5 class="modal-title" id="messageModalLabel{{ $message->id }}">Message Details</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -113,7 +228,7 @@
                                         </dl>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="https://mail.google.com" class="btn btn-primary">
+                                        <a href="https://mail.google.com" target="_blank" class="btn btn-primary">
                                             <i class="fas fa-reply"></i> Reply via Email
                                         </a>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -135,4 +250,16 @@
         <!-- /.card -->
     </div>
 </div>
+
+<script>
+// Ensure theme is applied when modals open
+document.addEventListener('DOMContentLoaded', function() {
+    // Apply theme to modals when they're shown
+    $('.modal').on('show.bs.modal', function() {
+        const theme = document.documentElement.getAttribute('data-theme');
+        this.setAttribute('data-theme', theme);
+    });
+});
+</script>
+
 @endsection

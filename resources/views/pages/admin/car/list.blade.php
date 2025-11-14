@@ -15,7 +15,7 @@
                             <th>Image</th>
                             <th>Vehicle</th>
                             <th>Listing</th>
-                            <th>Daily Price</th>
+                            <th>Price</th>
                             <th>Vehicle Type</th>
                             <th>Pickup Location</th>
                             <th>Seats</th>
@@ -34,7 +34,9 @@
                             </td>
                             <td>{{$car->title}}</td>
                             <td>{{$car->type}}</td>
-                            <td>৳{{$car->price}}/day</td>
+                            <td>
+                                ৳{{$car->price}}{{ strtolower($car->type) == 'for rent' ? '/month' : '' }}
+                            </td>
                             <td>{{$car->car_type}}</td>
                             <td>{{$car->address}}</td>
                             <td>{{$car->seats}}</td>
