@@ -61,37 +61,46 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="text" name="name" class="form-control" id="name"
-                                                placeholder="Your Name">
+                                                placeholder="Your Name" 
+                                                value="{{ $userData ? $userData['name'] : old('name') }}"
+                                                {{ $userData ? '' : 'required' }}>
                                             <label for="name">Your Name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="email" name="email" class="form-control" id="email"
-                                                placeholder="Your Email">
+                                                placeholder="Your Email"
+                                                value="{{ $userData ? $userData['email'] : old('email') }}"
+                                                {{ $userData ? '' : 'required' }}>
                                             <label for="email">Your Email</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="text" name="phone" class="form-control" id="phone"
-                                                placeholder="Your Phone">
+                                                placeholder="Your Phone"
+                                                value="{{ $userData ? $userData['phone'] : old('phone') }}"
+                                                {{ $userData ? '' : 'required' }}>
                                             <label for="phone">Your Phone</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="date" name="date" class="form-control" id="date"
-                                                placeholder="Pickup Date">
+                                                placeholder="Pickup Date" value="{{ old('date') }}" required>
                                             <label for="date">Pickup Date</label>
                                         </div>
                                     </div>
 
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <select name="car" id="car" class="form-control" placeholder="Select Vehicle">
+                                            <select name="car" id="car" class="form-control" placeholder="Select Vehicle" required>
                                                 @foreach($cars as $car)
-                                                    <option value="{{$car->id}}">{{$car->title}}</option>
+                                                    <option value="{{$car->id}}" 
+                                                        {{ ($selectedCarId && $selectedCarId == $car->id) ? 'selected' : '' }}>
+                                                        {{$car->title}}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             <label for="car">Select Vehicle</label>
@@ -102,7 +111,7 @@
                                         <div class="form-floating">
                                             <textarea class="form-control" name="notes"
                                                 placeholder="Leave a message here" id="message"
-                                                style="height: 150px"></textarea>
+                                                style="height: 150px">{{ old('notes') }}</textarea>
                                             <label for="message">Notes</label>
                                         </div>
                                     </div>

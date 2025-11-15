@@ -10,9 +10,28 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AppointmentController extends Controller
 {
-    public function getAppointment(){
-        $cars = Car::where(["isActive"=>true])->get();
-        return view("pages.get-appointment", ["cars"=>$cars]);
+    public function getAppointment(Request $request){
+    $cars = Car::where(["isActive"=>true])->get();
+    
+    // Get the selected car ID from the request
+    $selectedCarId = $request->query('car_id');
+    
+    // Get authenticated user data if logged in
+    $userData = null;
+    if (Auth::check()) {
+        $user = Auth::user();
+        $userData = [
+            'name' => $user->name,
+            'email' => $user->email,
+            'phone' => $user->phone
+        ];
+    }
+    
+    return view("pages.get-appointment", [
+        "cars" => $cars,
+        "selectedCarId" => $selectedCarId,
+        "userData" => $userData
+        ]);
     }
 
     public function appointmentBooking(Request $request){

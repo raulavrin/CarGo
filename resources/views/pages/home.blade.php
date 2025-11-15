@@ -270,7 +270,9 @@
                     </div>
                 </div>
                 <!-- Search Bar End -->
-
+                
+                <!-- Vehicle List Start -->
+                
                 <div id="results">
                     <div class="p-0">
                         <div class="row g-4">
@@ -286,6 +288,7 @@
                                         </div>
                                         <div class="p-4 pb-0">
                                             <h5 class="mb-3 vehicle-price">৳{{ $car->price }}{{ strtolower($car->type) == 'for rent' ? '/Month' : '' }}</h5>
+                                            <!-- Updated: Add car_id parameter to the title link -->
                                             <a class="d-block h5 mb-2 vehicle-title" href="{{ route('getAppointment') }}?car_id={{ $car->id }}">{{$car->title}}</a>
                                             <p class="vehicle-location"><i class="fa fa-map-marker-alt me-2 text-primary"></i>{{$car->address}}</p>
                                         </div>
@@ -300,8 +303,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
         <!-- Vehicle List End -->
 
 
