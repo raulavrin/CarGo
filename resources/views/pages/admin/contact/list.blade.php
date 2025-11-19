@@ -113,6 +113,15 @@
     [data-theme="dark"] .modal-backdrop.show {
         opacity: 0.7;
     }
+
+    /* Fix hover text color in contact list for dark mode */
+    [data-theme="dark"] .table-hover tbody tr:hover td {
+        color: #f7fafc !important;
+    }
+
+    [data-theme="dark"] .table-hover tbody tr:hover {
+        background-color: rgba(74, 85, 104, 0.3) !important;
+    }
 </style>
 
 <div class="row">
@@ -166,16 +175,18 @@
                                     @if($message->status === 'unread')
                                         <a href="{{ route('contactMarkAsRead', $message->id) }}" 
                                            class="btn btn-sm btn-info" 
-                                           title="Mark as Read">
-                                            <i class="fas fa-eye"></i>
+                                           title="Mark as Read"
+                                           style="padding: 0.375rem 0.75rem; border-radius: 0.25rem 0 0 0.25rem;">
+                                            <i class="fas fa-eye"></i> Read
                                         </a>
                                     @endif
                                     
                                     @if($message->status !== 'replied')
                                         <a href="{{ route('contactMarkAsReplied', $message->id) }}" 
                                            class="btn btn-sm btn-success" 
-                                           title="Mark as Replied">
-                                            <i class="fas fa-reply"></i>
+                                           title="Mark as Replied"
+                                           style="padding: 0.375rem 0.75rem; {{ $message->status === 'unread' ? 'border-radius: 0;' : 'border-radius: 0.25rem 0 0 0.25rem;' }}">
+                                            <i class="fas fa-reply"></i> Reply
                                         </a>
                                     @endif
                                     
@@ -183,15 +194,17 @@
                                             class="btn btn-sm btn-primary" 
                                             data-toggle="modal" 
                                             data-target="#messageModal{{ $message->id }}"
-                                            title="View Full Message">
-                                        <i class="fas fa-envelope-open"></i>
+                                            title="View Full Message"
+                                            style="padding: 0.375rem 0.75rem; border-radius: 0;">
+                                        <i class="fas fa-envelope-open"></i> View
                                     </button>
                                     
                                     <a href="{{ route('contactDelete', $message->id) }}" 
                                        class="btn btn-sm btn-danger" 
                                        onclick="return confirm('Are you sure you want to delete this message?')"
-                                       title="Delete">
-                                        <i class="fas fa-trash"></i>
+                                       title="Delete"
+                                       style="padding: 0.375rem 0.75rem; border-radius: 0 0.25rem 0.25rem 0;">
+                                        <i class="fas fa-trash"></i> Delete
                                     </a>
                                 </div>
                             </td>

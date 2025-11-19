@@ -75,6 +75,13 @@ Route::get('/appointment-decline/{id}', function($id){
     if(Auth::user()->email !== ADMIN_EMAIL) return redirect()->route('home');
     return app()->call([app()->make(AppointmentController::class), 'declineAppointment'], ['id' => $id]);
 })->name("declineAppointment");
+
+Route::get('/appointment-delete/{id}', function($id){
+    if(!Auth::check()) return redirect()->route('login');
+    if(Auth::user()->email !== ADMIN_EMAIL) return redirect()->route('home');
+    return app()->call([app()->make(AppointmentController::class), 'deleteAppointment'], ['id' => $id]);
+})->name("deleteAppointment");
+
 Route::get('/my-appointments', [AppointmentController::class, 'myAppointments'])->name("myAppointments");
 
 

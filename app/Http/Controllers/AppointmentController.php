@@ -72,6 +72,13 @@ class AppointmentController extends Controller
         return redirect()->back();
     }
 
+    public function deleteAppointment($id){
+        Appointment::where(["id"=>$id])->delete();
+        Alert::success('Deleted', 'Appointment has been deleted successfully');
+
+        return redirect()->back();
+    }
+
     public function myAppointments(){
         $myAppointments = Appointment::where(["user_id"=>Auth::user()->id])->with("car")->get();
 

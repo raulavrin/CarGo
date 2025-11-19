@@ -1450,3 +1450,16 @@ a,
 .form-control {
     transition: all 0.3s ease;
 }
+
+
+[data-theme="dark"] select#car.form-control {
+    background-color: #4a5568;
+    color: #f7fafc;
+}
+
+[data-theme="dark"] select#car.form-control option {
+    background-color: #2d3748;
+    color: #f7fafc;
+}
+
+

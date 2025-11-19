@@ -5,7 +5,6 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Booking List</h3>
-
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
@@ -24,7 +23,7 @@
                     <tbody>
                         @foreach($appointments as $appointment)
                         <tr>
-                            <td >
+                            <td>
                                 <p class="mb-0">Name: {{$appointment->name}}</p>
                                 <p class="mb-0">Email: {{$appointment->email}}</p>
                                 <p class="mb-0">Phone: {{$appointment->phone}}</p>
@@ -41,16 +40,49 @@
                             <td>{{$appointment->date}}</td>
                             <td>{{$appointment->car ? $appointment->car->title : 'Vehicle removed'}}</td>
                             <td>{{$appointment->message}}</td>
-                            <td>{{$appointment->status}}</td>
                             <td>
-                                @if($appointment->status === "declined")
-                                <a href="{{route("approveAppointment", $appointment->id)}}" class="btn btn-info">Approve</a>
-                                @elseif($appointment->status === "approved")
-                                <a href="{{route("declineAppointment", $appointment->id)}}" class="btn btn-danger">Decline</a>
+                                @if($appointment->status === 'approved')
+                                    <span class="badge badge-success">Approved</span>
+                                @elseif($appointment->status === 'declined')
+                                    <span class="badge badge-danger">Declined</span>
                                 @else
-                                <a href="{{route("approveAppointment", $appointment->id)}}" class="btn btn-info">Approve</a>
-                                <a href="{{route("declineAppointment", $appointment->id)}}" class="btn btn-danger">Decline</a>
+                                    <span class="badge badge-warning">Pending</span>
                                 @endif
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    @if($appointment->status === "declined")
+                                        <a href="{{route("approveAppointment", $appointment->id)}}" 
+                                           class="btn btn-sm btn-info" 
+                                           title="Approve">
+                                            <i class="fas fa-check"></i> Approve
+                                        </a>
+                                    @elseif($appointment->status === "approved")
+                                        <a href="{{route("declineAppointment", $appointment->id)}}" 
+                                           class="btn btn-sm btn-warning" 
+                                           title="Decline">
+                                            <i class="fas fa-times"></i> Decline
+                                        </a>
+                                    @else
+                                        <a href="{{route("approveAppointment", $appointment->id)}}" 
+                                           class="btn btn-sm btn-info" 
+                                           title="Approve">
+                                            <i class="fas fa-check"></i> Approve
+                                        </a>
+                                        <a href="{{route("declineAppointment", $appointment->id)}}" 
+                                           class="btn btn-sm btn-warning" 
+                                           title="Decline">
+                                            <i class="fas fa-times"></i> Decline
+                                        </a>
+                                    @endif
+                                    
+                                    <a href="{{route("deleteAppointment", $appointment->id)}}" 
+                                       class="btn btn-sm btn-danger" 
+                                       onclick="return confirm('Are you sure you want to delete this appointment?')"
+                                       title="Delete">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                         @endforeach
