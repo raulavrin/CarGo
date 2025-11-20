@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string("email");
             $table->string("phone");
             $table->string("date");
-            $table->foreignId("property_id")->on("car_info")->reference("id");
-            $table->foreignId("user_id")->on("users")->reference("id");
+            $table->foreignId("car_id")->constrained("car_info")->onDelete('cascade');
+            $table->foreignId("user_id")->constrained("users")->onDelete('cascade');
             $table->text("message");
             $table->string("status")->default("pending");
             $table->timestamps();

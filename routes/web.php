@@ -130,3 +130,4 @@ Route::match(['get', 'post'], 'subscription/cancel', [SubscriptionController::cl
 Route::get('/profile', [App\Http\Controllers\UserProfileController::class, 'index'])->name('userProfile');
 Route::post('/profile/update', [App\Http\Controllers\UserProfileController::class, 'updateProfile'])->name('userProfile.update');
 Route::post('/profile/password', [App\Http\Controllers\UserProfileController::class, 'updatePassword'])->name('userProfile.password');
+Route::delete('/profile/delete', [App\Http\Controllers\UserProfileController::class, 'deleteAccount'])->name('userProfile.delete');
